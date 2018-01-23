@@ -1,31 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-const Otsikko = (props) =>{
-  return(
-    <div>
-      <h1>{props.kurssi.nimi}</h1>
-    </div>
-  )
-}
-
-const Sisalto = (props) =>{
-  return(
-    <div>
-      <p> {props.osat[0].nimi} {props.osat[0].tehtavia} </p>
-      <p> {props.osat[1].nimi} {props.osat[1].tehtavia} </p>
-      <p> {props.osat[2].nimi} {props.osat[2].tehtavia} </p>
-    </div>
-  )
-}
-
-const Yhteensa = (props) => {
-  return(
-    <div>
-      <p>yhteensä: {props.osat[0].tehtavia + props.osat[1].tehtavia + props.osat[2].tehtavia} tehtävää</p>
-    </div>
-  )
-}
+import Kurssi from './components/Kurssi'
 
 const Button = ({handler, text}) => (
   <button onClick={handler}>{text}</button>
@@ -135,35 +110,57 @@ class Unicafe extends React.Component {
 }
 
 const App = () => {
-  const kurssi = {
-    nimi: 'Half Stack -sovelluskehitys',
-    osat: [
-      {
-        nimi: 'Reactin perusteet',
-        tehtavia: 10
-      },
-      {
-        nimi: 'Tiedonvälitys propseilla',
-        tehtavia: 7
-      },
-      {
-        nimi: 'Komponenttien tila',
-        tehtavia: 14
-      }
-    ]
-  }
 
-  return (
+  const kurssi  =
+    [
+    {
+      nimi: 'Half Stack -sovelluskehitys',
+      id: 1,
+      osat: [
+        {
+          nimi: 'Reactin perusteet',
+          tehtavia: 10,
+          id: 1
+        },
+        {
+          nimi: 'Tiedonvälitys propseilla',
+          tehtavia: 7,
+          id: 2
+        },
+        {
+          nimi: 'Komponenttien tila',
+          tehtavia: 14,
+          id: 3
+        }
+      ]
+    },
+    {
+      nimi: 'Node.js',
+      id: 2,
+      osat: [
+        {
+          nimi: 'Routing',
+          tehtavia: 3,
+          id: 1
+        },
+        {
+          nimi: 'Middlewaret',
+          tehtavia: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
+
+  return(
     <div>
-      <Otsikko kurssi = {kurssi}/>
-      <Sisalto osat={kurssi.osat} />
-      <Yhteensa osat={kurssi.osat} />
-      <br/>
-      <Unicafe/>
-      <br/>
+      {kurssi.map(kurssi =>
+      <div key={kurssi.id}>
+         <Kurssi props={kurssi}/>
+      </div>)}
     </div>
-  )
-}
+    )
+  }
 
 ReactDOM.render(
   <App />,
