@@ -1,7 +1,5 @@
 import React from 'react'
 import Note from './components/Note'
-import Puhelinluettelo from './components/Puhelinluettelo'
-import Countries from './components/Countries'
 import noteService from './services/notes'
 import Notification from './components/Notification'
 
@@ -96,9 +94,6 @@ class App extends React.Component {
 
     return (
       <div>
-        <Countries/>
-        <br/>
-        <Puhelinluettelo/>
         <h1>Muistiinpanot</h1>
         <Notification message={this.state.error}/>
         <div>
